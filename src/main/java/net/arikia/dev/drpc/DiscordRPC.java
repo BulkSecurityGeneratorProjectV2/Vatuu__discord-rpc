@@ -4,6 +4,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 
 import java.io.*;
+import java.nio.file.Files;
 
 /**
  * @author Nicolas "Vatuu" Adamoglou
@@ -140,7 +141,7 @@ public final class DiscordRPC {
 		finalPath = "/" + dir + "/" + name;
 
 		try {
-			File f = File.createTempFile("drpc", name);
+			File f = Files.createTempFile("drpc", name).toFile();
 
 			try (InputStream in = DiscordRPC.class.getResourceAsStream(finalPath); OutputStream out = openOutputStream(f)) {
 				copyFile(in, out);
